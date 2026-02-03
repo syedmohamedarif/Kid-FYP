@@ -87,11 +87,12 @@ docker compose up --build
 
 ### Option A: Host backend on Render (or similar)
 1. Create a new Web Service from the `aurasense/backend` folder.
-2. Set environment variables:
+2. Set the runtime to Python 3.11 (Render reads `runtime.txt` in `aurasense/backend`).
+3. Set environment variables:
    - `GROQ_API_KEY`
    - `YOUTUBE_API_KEY`
    - `GROQ_MODEL` (optional)
-3. Start command:
+4. Start command:
    - `uvicorn main:app --host 0.0.0.0 --port 8000`
 
 ### Option B: Host frontend on Netlify/Vercel
