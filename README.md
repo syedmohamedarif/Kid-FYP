@@ -13,6 +13,7 @@ aurasense/
 │   ├── recommender.py
 │   ├── youtube_service.py
 │   ├── requirements.txt
+│   ├── Dockerfile
 │
 │── frontend/
 │   ├── src/
@@ -26,6 +27,9 @@ aurasense/
 │   ├── tailwind.config.js
 │   ├── vite.config.js
 │   ├── postcss.config.js
+│   ├── Dockerfile
+│
+│── docker-compose.yml
 ```
 
 ## Requirements
@@ -65,6 +69,35 @@ npm run dev
 ```
 
 The frontend runs on `http://localhost:5173`.
+
+## Docker (Local Hosting)
+
+```bash
+export GROQ_API_KEY="your_groq_api_key"
+export YOUTUBE_API_KEY="your_youtube_api_key"
+export GROQ_MODEL="llama-3.1-8b-instant"
+
+docker compose up --build
+```
+
+- Backend: `http://localhost:8000`
+- Frontend: `http://localhost:5173`
+
+## Production Hosting Options
+
+### Option A: Host backend on Render (or similar)
+1. Create a new Web Service from the `aurasense/backend` folder.
+2. Set environment variables:
+   - `GROQ_API_KEY`
+   - `YOUTUBE_API_KEY`
+   - `GROQ_MODEL` (optional)
+3. Start command:
+   - `uvicorn main:app --host 0.0.0.0 --port 8000`
+
+### Option B: Host frontend on Netlify/Vercel
+1. Set `VITE_API_URL` to your backend URL.
+2. Build command: `npm run build`
+3. Output directory: `dist`
 
 ## Default Login
 
